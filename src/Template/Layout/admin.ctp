@@ -14,23 +14,15 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
             <?= $cakeDescription ?>:
             <?= $this->fetch('title') ?>
         </title>
-        <!-- Bootstrap core CSS-->
-        <link href="css/admin/bootstrap.css" rel="stylesheet">
-        <!-- Custom fonts for this template-->
-        <link href="css/admin/font-awesome.css" rel="stylesheet" type="text/css">
-        <!-- Page level plugin CSS-->
-        <link href="css/admin/dataTables.bootstrap4.css" rel="stylesheet">
-        <!-- Custom styles for this template-->
-        <link href="css/admin/sb-admin.css" rel="stylesheet">
         <?php
         $css = array(
             'admin/bootstrap.css',
             'admin/font-awesome.css',
-            'dataTables.bootstrap4.css',
-            'sb-admin.css',
+            'admin/dataTables.bootstrap4.css',
+            'admin/sb-admin.css',
         );
         ?>
-        <?= $this->Html->css($css); ?>
+        <?= $this->Html->css($css, ['plugin' => false]); ?>
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
@@ -40,7 +32,9 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
         <?= $this->element('admin/navigation') ?>
         <div class="content-wrapper">
             <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
+            <div class="container-fluid">
+                <?= $this->fetch('content') ?>
+            </div>
             <!-- /.container-fluid-->
             <!-- /.content-wrapper-->
             <footer class="sticky-footer">
@@ -67,7 +61,7 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <?= $this->Html->link(__('Logout'), ['controller' => false, 'action' => false, 'prefix' => false, '_full' => true],['class' => 'btn btn-primary']) ?>
+                            <?= $this->Html->link(__('Logout'), ['controller' => false, 'action' => false, 'prefix' => false, '_full' => true], ['class' => 'btn btn-primary']) ?>
                         </div>
                     </div>
                 </div>
@@ -85,7 +79,7 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
                 'admin/sb-admin-charts.js',
             );
             ?>
-            <?= $this->Html->script($script) ?>
+            <?= $this->Html->script($script, ['plugin' => false]) ?>
             <?= $this->fetch('script') ?>
         </div>
     </body>

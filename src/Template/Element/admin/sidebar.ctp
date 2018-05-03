@@ -1,9 +1,6 @@
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="index.html">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Dashboard</span>
-        </a>
+        <?= $this->Html->link("<i class=\"fa fa-fw fa-dashboard\"></i><span class=\"nav-link-text\">" . __('Dashboard') . "</span>", ['controller' => 'pages', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
         <a class="nav-link" href="charts.html">
@@ -87,5 +84,8 @@
             <i class="fa fa-fw fa-link"></i>
             <span class="nav-link-text">Link</span>
         </a>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+        <?= $this->Html->link("<i class=\"fa fa-fw fa-user\"></i><span class=\"nav-link-text\">" . __('Users') . "</span>", ['controller' => 'users', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>
 </ul>
