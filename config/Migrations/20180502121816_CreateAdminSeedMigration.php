@@ -10,8 +10,8 @@ class CreateAdminSeedMigration extends AbstractMigration {
         $populator->addEntity('Users', 1, [
             'first_name' => 'Admin',
             'last_name' => 'Root',
-            'username' => 'root',
             'email' => 'root@test.com',
+            'username' => 'root',
             'password' => function () {
                 $hasher = new \Cake\Auth\DefaultPasswordHasher();
                 return $hasher->hash('secret');

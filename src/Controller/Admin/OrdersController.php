@@ -1,7 +1,8 @@
 <?php
 namespace App\Controller\Admin;
 
-use Cake\Event\Event;
+use App\Controller\AppController;
+
 /**
  * Orders Controller
  *
@@ -9,7 +10,7 @@ use Cake\Event\Event;
  *
  * @method \App\Model\Entity\Order[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class OrdersController extends AdminController
+class OrdersController extends AppController
 {
 
     /**
@@ -107,9 +108,5 @@ class OrdersController extends AdminController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
-    
-    public function beforeFilter(Event $event) {
-        parent::beforeFilter($event);
     }
 }

@@ -21,7 +21,7 @@
                 <li><a href="#order"><?= __('PEDIDOS') ?></a></li>
                 <li><a href="#contact"><?= __('CONTACTO') ?></a></li>
                 <!--<li><a href="./admin"><?= __('LOGIN') ?></a></li>-->
-                <li><?= $this->Html->link('LOGIN', array('prefix' => 'admin', 'controller' => 'pages', 'action' => 'index'), array('class' => 'external')); ?></li>
+                <li><?= $this->Html->link('LOGIN','/admin/login', array('class' => 'external')); ?></li>
             </ul>
         </nav>
 

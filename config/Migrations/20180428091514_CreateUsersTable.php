@@ -16,7 +16,7 @@ class CreateUsersTable extends AbstractMigration {
         $table->addColumn('first_name','string',['limit' => 100])
                 ->addColumn('last_name','string',['limit'=>100])
                 ->addColumn('email','string',['limit'=>100])
-                ->addColumn('usarname','string',['limit' => 100])
+                ->addColumn('username','string',['limit' => 100])
                 ->addColumn('password', 'string')
                 ->addColumn('role', 'enum', ['values'=>'admin, user'])
                 ->addColumn('active', 'boolean')

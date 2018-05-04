@@ -61,7 +61,7 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <?= $this->Html->link(__('Logout'), ['controller' => false, 'action' => false, 'prefix' => false, '_full' => true], ['class' => 'btn btn-primary']) ?>
+                            <?= $this->Html->link(__('Logout'), '/', ['class' => 'btn btn-primary']) ?>
                         </div>
                     </div>
                 </div>
