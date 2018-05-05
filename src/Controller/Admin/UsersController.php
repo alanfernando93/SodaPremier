@@ -106,6 +106,9 @@ class UsersController extends AdminController {
     }
 
     public function login() {
+        if (!is_null($this->Auth->user())) {
+            return $this->redirect($this->Auth->redirectUrl());
+        }
         $this->viewBuilder()->setLayout('login');
         if ($this->request->is('post')) {
 
@@ -115,7 +118,7 @@ class UsersController extends AdminController {
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error('Your username or password is incorrect.', array('class' => "alert alert-danger"));
+            $this->Flash->error('Your username or password is incorrect.', ['class' => 'alert alert-danger']);
         }
     }
 
@@ -124,32 +127,28 @@ class UsersController extends AdminController {
     }
 
     public function beforeFilter(Event $event) {
-//        $this->viewBuilder()->setLayout('admin');
         parent ::beforeFilter($event);
-        // Allow users to register and logout.
-        // You should not add the "login" action to allow list. Doing so would
-        // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['add','edit']);
+        $this->Auth->allow(['logout','add']);
     }
 
     public function isAuthorized($user) {
         $action = $this->request->getParam('action');
-        print $action;
+        print_r($action);
         // The add and tags actions are always allowed to logged in users.
-//        if (in_array($action, ['login', 'tags'])) {
-//            return true;
-//        }
+        if (in_array($action, ['login', 'tags'])) {
+            return true;
+        }
 
         // All other actions require a slug.
-//        $slug = $this->request->getParam('pass.0');
-//        if (!$slug) {
-//            return false;
-//        }
+        $slug = $this->request->getParam('pass.0');
+        if (!$slug) {
+            return false;
+        }
 
-        // Check that the article belongs to the current user.
-//        $article = $this->Articles->findBySlug($slug)->first();
+//         Check that the article belongs to the current user.
+        $article = $this->Articles->findBySlug($slug)->first();
 //
-//        return $article->user_id === $user['id'];
+        return $article->user_id === $user['id'];
     }
 
     public function initialize() {

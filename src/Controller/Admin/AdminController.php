@@ -15,6 +15,7 @@ class AdminController extends AppController {
         parent::initialize();
         // Existing code
         $this->loadComponent('Auth', [
+//            'authorize' => ['Controller'],
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -26,7 +27,7 @@ class AdminController extends AppController {
 //            'loginAction' => [
 //                'controller' => 'Users',
 //                'action' => 'login'
-//            ],
+//            ],            
             'loginRedirect' => [
                 'controller' => 'Users',
                 'action' => 'index'
@@ -41,7 +42,7 @@ class AdminController extends AppController {
 
         // Allow the display action so our PagesController
         // continues to work. Also enable the read only actions.
-        $this->Auth->allow(['view', 'index']);
+//        $this->Auth->allow(['view', 'index']);
     }
 
     public function beforeRender(Event $event) {
@@ -50,13 +51,14 @@ class AdminController extends AppController {
     
     public function beforeFilter(Event $event) {
         $this->viewBuilder()->setLayout('admin');
+//        $this->Auth->allow(['index', 'view']);
     }
 
     public function isAuthorized($user) {
         // Admin can access every action
-        if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        }
+//        if (isset($user['role']) && $user['role'] === 'admin') {
+//            return true;
+//        }
         // By default deny access.
         return false;
     }

@@ -20,6 +20,8 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
+use Cake\Psy\debug;
 
 /**
  * Static content controller
@@ -65,6 +67,21 @@ class PagesController extends AppController {
         // }
     }
 
+    public function addOrder() {
+        $this->loadModel('Orders');
+        $order = $this->Orders->newEntity();
+        if ($this->request->is('post')) {
+            $order = $this->Orders->patchEntity($order, $this->request->getData());
+            if ($this->Orders->save($order)) {
+                $this->Flash->success(__('The order has been saved.'), ['key' => 'order']);
 
-    
+                return $this->redirect('/#order');
+//                return $this->setAction('home');
+            }
+            $this->Flash->error(__('The order could not be saved. Please, try again.'),['key' => 'order']);
+            return $this->redirect('/addOrder#order');
+        }
+        $this->setAction('home'); //        
+    }
+
 }

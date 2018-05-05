@@ -54,6 +54,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
     
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin']);
+    
+    $routes->connect('/addOrder', ['controller' => 'Pages', 'action' => 'addOrder']);
+    
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
@@ -83,7 +87,9 @@ Router::prefix('admin', function ($routes) {
     // And have the prefix => admin route element added.
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'index']);
     
-    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    
+    $routes->connect('/settings', ['controller' => 'settings', 'action' => 'edit',1]);
 
     $routes->fallbacks(DashedRoute::class);
 });

@@ -65,8 +65,7 @@ class OrdersTable extends Table
             ->notEmpty('full_name');
 
         $validator
-            ->scalar('ci')
-            ->maxLength('ci', 50)
+            ->integer('ci')
             ->requirePresence('ci', 'create')
             ->notEmpty('ci');
 
@@ -97,7 +96,7 @@ class OrdersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+//        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;

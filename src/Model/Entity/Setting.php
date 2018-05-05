@@ -4,21 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Order Entity
+ * Setting Entity
  *
  * @property int $id
- * @property string $full_name
- * @property int $ci
- * @property int $phono
+ * @property string $title
  * @property string $email
- * @property string $status
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
- * @property int $user_id
- *
- * @property \App\Model\Entity\User $user
  */
-class Order extends Entity
+class Setting extends Entity
 {
 
     /**
@@ -31,14 +25,9 @@ class Order extends Entity
      * @var array
      */
     protected $_accessible = [
-        'full_name' => true,
-        'ci' => true,
-        'phono' => true,
+        'title' => true,
         'email' => true,
-        'status' => true,
         'created' => true,
-        'modified' => true,
-        'user_id' => true,
-        'user' => true
+        'modified' => true
     ];
 }

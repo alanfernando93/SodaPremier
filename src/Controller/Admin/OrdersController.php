@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Controller\Admin;
 
-use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Orders Controller
  *
@@ -10,16 +10,14 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Order[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class OrdersController extends AppController
-{
+class OrdersController extends AdminController {
 
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function index() {
         $this->paginate = [
             'contain' => ['Users']
         ];
@@ -35,8 +33,7 @@ class OrdersController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $order = $this->Orders->get($id, [
             'contain' => ['Users']
         ]);
@@ -49,8 +46,7 @@ class OrdersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $order = $this->Orders->newEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
@@ -72,8 +68,7 @@ class OrdersController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $order = $this->Orders->get($id, [
             'contain' => []
         ]);
@@ -97,8 +92,7 @@ class OrdersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $order = $this->Orders->get($id);
         if ($this->Orders->delete($order)) {
@@ -109,4 +103,25 @@ class OrdersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        // $this->set('page_active', 'class="active"');
+    }
+
+    public function isAuthorized($user) {
+// All registered users can add articles
+        if ($this->request->getParam('action') === 'add') {
+            return true;
+        }
+// The owner of an article can edit and delete it
+//        if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+//            $articleId = (int) $this->request->getParam('pass.0');
+//            if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+//                return true;
+//            }
+//        }
+        return parent::isAuthorized($user);
+    }
+
 }
