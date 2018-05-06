@@ -39,7 +39,6 @@
         </div>        
     </div>
 </section>
-<?= $this->Flash->render('not') ?>
 <section id="features" class="features">
     <div class="container">
         <div class="row">        
@@ -78,7 +77,6 @@
         </div>
     </div>
 </section>
-
 <section id="works" class="works clearfix">
     <div class="container">
         <div class="row">
@@ -188,7 +186,6 @@
         </figure>        
     </div>
 </section>		
-
 <section id="facts" class="facts">
     <div class="parallax-overlay">
         <div class="container">
@@ -233,8 +230,7 @@
             </div>
         </div>
     </div>
-</section>	
-
+</section>
 <section id="order" class="order">
     <div class="container">
         <div class="row mb50">
@@ -282,7 +278,6 @@
         </div>
     </div>
 </section>
-
 <section id="contact" class="contact">
     <div class="container">
         <div class="row mb50">            
@@ -324,13 +319,21 @@
                             <input type="submit" id="form-submit" class="pull-right" value="Enviar Mensaje">
                         </div>
                     </form>
+                    <?= $this->Flash->render('mail') ?>
+                    <h3>Sugerencias</h3>
+                    <?= $this->Form->create(null,['url' => '/sendMail']) ?>
+                    <fieldset>
+                        <?php
+                        echo $this->Form->control('name');
+                        echo $this->Form->control('email');
+                        echo $this->Form->control('message');
+                        ?>
+                    </fieldset>
+                    <?= $this->Form->button(__('Enviar Mensaje')) ?>
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Google map -->
     <div id="map_canvas" class="wow bounceInDown animated" data-wow-duration="500ms"></div>
-    <!-- End Google map -->
-
 </section>

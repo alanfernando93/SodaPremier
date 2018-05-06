@@ -20,8 +20,10 @@ use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\ORM\TableRegistry;
 use Cake\Psy\debug;
+use Cake\Mailer\Email;
+
+//use Cake\Network\Email\Email; // <-- Importante para utilizacion de correo electronico
 
 /**
  * Static content controller
@@ -78,10 +80,48 @@ class PagesController extends AppController {
                 return $this->redirect('/#order');
 //                return $this->setAction('home');
             }
-            $this->Flash->error(__('The order could not be saved. Please, try again.'),['key' => 'order']);
+            $this->Flash->error(__('The order could not be saved. Please, try again.'), ['key' => 'order']);
             return $this->redirect('/addOrder#order');
         }
-        $this->setAction('home'); //        
+        $this->setAction('home');
+    }
+
+    public function sendMail() {
+        Email::setConfigTransport('gmail', [
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'username' => 'alanfernando93.am@gmail.com',
+            'password' => 'alanmamanihuayllani',
+            'className' => 'Smtp',
+            'tls' => true
+        ]);
+//        debug($this->request->getData('message'));
+//        debug(Email::getConfigTransport('gmail'));
+        if ($this->request->is('post')) {
+            $correo = new Email(); //instancia de correo
+            $correo->setTransport('gmail'); //nombre del configTrasnport que acabamos de configurar
+            $correo->setTemplate('default'); //plantilla a utilizar
+            $correo->setEmailFormat('html'); //formato de correo
+            $correo->setTo('alanfernando93@hotmail.com'); //correo para
+            $correo->setFrom('alanfernando.am93@gmaill.com'); //correo de
+            $correo->setSubject('Correo de prueba en cakephp3'); //asunto
+            $correo->setViewVars([//enviar variables a la plantilla
+                        'content' => 'hola\npollo    99999'
+//                        'var1' => 'Hugo',
+//                        'var2' => 'Kiuvox',
+//                        'var3' => 'http://blog.kiuvox.com'
+            ]);
+
+            if ($correo->send()) {
+                $this->Flash->success(__('Correo enviado'), ['key' => 'order']);
+
+                return $this->redirect('/#contact');
+            } else {
+                $this->Flash->error(__('The order could not be saved. Please, try again.'), ['key' => 'order']);
+                return $this->redirect('/sendMail#contact');
+            }
+        }
+        $this->setAction('home');
     }
 
 }

@@ -14,7 +14,7 @@ class CreateTableSettings extends AbstractMigration {
     public function change() {
         $table = $this->table('settings');
         $table->addColumn('title', 'string', ['limit' => 255])
-                ->addColumn('email', 'string')
+                ->addColumn('email', 'string', ['limit' => 100])
                 ->addColumn('created', 'datetime')
                 ->addColumn('modified', 'datetime')
                 ->create();
