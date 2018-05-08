@@ -20,6 +20,7 @@
                     <span class="d-lg-none">Messages
                         <span class="badge badge-pill badge-primary">12 New</span>
                     </span>
+                    <!--punto para alerta de sugerencias-->
                     <span class="indicator text-primary d-none d-lg-block">
                         <i class="fa fa-fw fa-circle"></i>
                     </span>
@@ -54,6 +55,7 @@
                     <span class="d-lg-none">Alerts
                         <span class="badge badge-pill badge-warning">6 New</span>
                     </span>
+                    <!--punto para la alerat de pedidos-->
                     <span class="indicator text-warning d-none d-lg-block">
                         <i class="fa fa-fw fa-circle"></i>
                     </span>

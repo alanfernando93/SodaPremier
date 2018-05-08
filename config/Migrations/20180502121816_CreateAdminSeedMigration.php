@@ -11,20 +11,17 @@ class CreateAdminSeedMigration extends AbstractMigration {
             'first_name' => 'Admin',
             'last_name' => 'Root',
             'email' => 'root@test.com',
-            'username' => 'root',
-            'password' => function () {
-                $hasher = new \Cake\Auth\DefaultPasswordHasher();
-                return $hasher->hash('secret');
-            },
+            'username' => 'admin',
+            'password' => 'admin',
             'role' => 'admin',
             'active' => 1,
             'created' => function () use ($faker) {
-                return $faker->dateTimeBetween($stratDate = "now",$endDate = "now");
+                return $faker->dateTimeBetween($stratDate = "now", $endDate = "now");
             },
             'modified' => function () use ($faker) {
-                return $faker->dateTimeBetween($stratDate = "now",$endDate = "now");
+                return $faker->dateTimeBetween($stratDate = "now", $endDate = "now");
             }
-        ]);       
+        ]);
         $populator->execute();
     }
 

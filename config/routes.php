@@ -60,6 +60,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     
     $routes->connect('/sendMail', ['controller' => 'Pages', 'action' => 'sendMail']);
     
+    $routes->connect('/sendComment', ['controller' => 'Pages', 'action' => 'sendComment']);
+    
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */

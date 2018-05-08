@@ -32,8 +32,10 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
         <?= $this->element('admin/navigation') ?>
         <div class="content-wrapper">
             <div class="container-fluid">    
-                <?= $this->Flash->render() ?>            
-                <?= $this->fetch('content') ?>
+                <?= $this->Flash->render() ?>       
+                <div class="container">
+                    <?= $this->fetch('content') ?>
+                </div>
             </div>
             <!-- /.container-fluid-->
             <!-- /.content-wrapper-->

@@ -21,6 +21,7 @@ use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Psy\debug;
+use Cake\Event\Event;
 use Cake\Mailer\Email;
 
 //use Cake\Network\Email\Email; // <-- Importante para utilizacion de correo electronico
@@ -44,29 +45,9 @@ class PagesController extends AppController {
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
     public function home() {
-        // $count = count($path);
-        // if (!$count) {
-        //     return $this->redirect('/');
-        // }
-        // if (in_array('..', $path, true) || in_array('.', $path, true)) {
-        //     throw new ForbiddenException();
-        // }
-        // $page = $subpage = null;
-        // if (!empty($path[0])) {
-        //     $page = $path[0];
-        // }
-        // if (!empty($path[1])) {
-        //     $subpage = $path[1];
-        // }
-        // $this->set(compact('page', 'subpage'));
-        // try {
-        //     $this->render(implode('/', $path));
-        // } catch (MissingTemplateException $exception) {
-        //     if (Configure::read('debug')) {
-        //         throw $exception;
-        //     }
-        //     throw new NotFoundException();
-        // }
+        $this->loadModel('Orders');
+        $products = $this->Orders->Products->find('list', ['limit' => 200]);
+        $this->set(compact('products'));
     }
 
     public function addOrder() {
@@ -81,7 +62,23 @@ class PagesController extends AppController {
 //                return $this->setAction('home');
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'), ['key' => 'order']);
-            return $this->redirect('/addOrder#order');
+            return $this->redirect('/#order');
+        }
+        $this->setAction('home');
+    }
+    
+    public function sendComment() {
+        $this->loadModel('Comments');
+        $comment = $this->Comments->newEntity();
+        if ($this->request->is('post')) {
+            $comment = $this->Comments->patchEntity($comment, $this->request->getData());
+            if ($this->Comments->save($comment)) {
+                $this->Flash->success(__('The comment has been saved.'),['key' => 'comment']);
+
+                return $this->redirect('/#contact');
+            }
+            $this->Flash->error(__('The comment could not be saved. Please, try again.'),['key' => 'comment']);
+            return $this->redirect('/#contact');
         }
         $this->setAction('home');
     }
@@ -118,10 +115,21 @@ class PagesController extends AppController {
                 return $this->redirect('/#contact');
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'), ['key' => 'order']);
-                return $this->redirect('/sendMail#contact');
+                return $this->redirect('/#contact');
             }
         }
         $this->setAction('home');
+    }
+    
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->loadModel('Orders');
+        $this->Orders->getEventManager()->on('Model.Order.afterPlace', function ($event) {
+            Log::write(
+                    'info', 'A new order was placed with id: ' . $event->getSubject()->id
+            );
+        });
+        // $this->set('page_active', 'class="active"');
     }
 
 }

@@ -6,8 +6,11 @@
         <?= $this->Html->link("<i class=\"fa fa-fw fa-shopping-cart \"></i><span class=\"nav-link-text\">" . __('Orders') . "</span>", ['controller' => 'orders', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-        <?= $this->Html->link("<i class=\"fa fa-fw fa-user\"></i><span class=\"nav-link-text\">" . __('Products') . "</span>", ['controller' => 'products', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
+        <?= $this->Html->link("<i class=\"fa fa-fw fa-glass\"></i><span class=\"nav-link-text\">" . __('Products') . "</span>", ['controller' => 'products', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>    
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <?= $this->Html->link("<i class=\"fa fa-fw fa-tags\"></i><span class=\"nav-link-text\">" . __('Comments') . "</span>", ['controller' => 'comments', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
+    </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
         <?= $this->Html->link("<i class=\"fa fa-fw fa-user\"></i><span class=\"nav-link-text\">" . __('Users') . "</span>", ['controller' => 'users', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>

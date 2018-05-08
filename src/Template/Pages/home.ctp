@@ -238,41 +238,48 @@
                 <h2>Pedidos</h2>
                 <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                <div class="contact-form">
-                    
-                    <?= $this->Flash->render('order') ?>
-                    <h3>Formulario de pedido</h3>
-                    <?= $this->Form->create(null,['url' => '/addOrder']) ?>
-                    <fieldset>
-                        <legend><?= __('Add Order') ?></legend>
-                        <?php
-                        echo $this->Form->control('full_name');
-                        echo $this->Form->control('ci');
-                        echo $this->Form->control('phono');
-                        echo $this->Form->control('email');
-                        echo $this->Form->control('status',['type'=>'hidden','value'=>'pendiente']);
-                        echo $this->Form->control('user_id',['type'=>'hidden', 'value'=>1])
-                        ?>
-                    </fieldset>
-                    <?= $this->Form->button(__('Submit')) ?>
-                    <?= $this->Form->end() ?>
-                    <form action="" id="contact-form">
+            <div class="col-lg-10 col-md-10 col-sm-7 col-xs-12 wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                <div class="row">
+                    <div class="contact-form col-md-12 col-md-offset-1">
+
+                        <?= $this->Flash->render('order') ?>
+                        <h3>Formulario de pedido</h3>
+                        <?= $this->Form->create(null, ['url' => '/addOrder', 'id' => 'contact-form']) ?>
+                        <input type="hidden" name="user_id" id="user_id" value="1">
+                        <input type="hidden" name="status" id="status" value="pendiente">
                         <div class="input-group name-email">
                             <div class="input-field">
-                                <input type="text" name="name" id="name" placeholder="Nombre" class="form-control">
+                                <input type="text" name="full_name" id="full_name" placeholder="Nombre" class="form-control">
                             </div>
                             <div class="input-field">
                                 <input type="email" name="email" id="email" placeholder="Correo" class="form-control">
                             </div>
+                            <div class="input-field">
+                                <input type="text" name="ci" id="ci" placeholder="Carnet de Indentidad" class="form-control">
+                            </div>
                         </div>
                         <div class="input-group">
-                            <textarea name="message" id="message" placeholder="Mensaje" class="form-control"></textarea>
+                            <div class="input-field">
+                                <input type="text" name="phono" id="phono" placeholder="Telefono" class="form-control">
+                            </div>
+                            <div class="input-field">
+                                <input type="number" name="count" id="count" placeholder="Cantidad" class="form-control">
+                            </div>
                         </div>
                         <div class="input-group">
-                            <input type="submit" id="form-submit" class="pull-right" value="Enviar Mensaje">
+                            <div class="input-field select">
+                                <?php echo $this->Form->select('product_id', $products, ['class' => 'select', 'empty' => '(Seleccione un producto)']); ?>
+                            </div>
+                            <div class="input-field select">
+                                <?php echo $this->Form->select('type', ['gaseosa' => 'Gaseosa', 'jugo' => 'Jugo'], ['class' => 'select', 'empty' => '(Seleccione el tipo de producto)']); ?>
+                            </div>
+
                         </div>
-                    </form>
+                        <div class="input-group">
+                            <input type="submit" id="form-submit" class="pull-right" value="<?= __('Send Order') ?>">
+                        </div>
+                        <?= $this->Form->end() ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -303,33 +310,21 @@
                 <div class="contact-form">
                     <?= $this->Flash->render('comment') ?>
                     <h3>SUGERENCIAS</h3>
-                    <form action="#" id="contact-form">
-                        <div class="input-group name-email">
-                            <div class="input-field">
-                                <input type="text" name="name" id="name" placeholder="Nombre" class="form-control">
-                            </div>
-                            <div class="input-field">
-                                <input type="email" name="email" id="email" placeholder="Correo" class="form-control">
-                            </div>
+                    <?= $this->Form->create(null, ['url' => '/sendComment', 'id' => 'contact-form']) ?>
+                    <div class="input-group name-email">
+                        <div class="input-field">
+                            <input type="text" name="nombre" id="name" placeholder="Nombre" class="form-control">
                         </div>
-                        <div class="input-group">
-                            <textarea name="message" id="message" placeholder="Mensaje" class="form-control"></textarea>
+                        <div class="input-field">
+                            <input type="email" name="email" id="email" placeholder="Correo" class="form-control">
                         </div>
-                        <div class="input-group">
-                            <input type="submit" id="form-submit" class="pull-right" value="Enviar Mensaje">
-                        </div>
-                    </form>
-                    <?= $this->Flash->render('mail') ?>
-                    <h3>Sugerencias</h3>
-                    <?= $this->Form->create(null,['url' => '/sendMail']) ?>
-                    <fieldset>
-                        <?php
-                        echo $this->Form->control('name');
-                        echo $this->Form->control('email');
-                        echo $this->Form->control('message');
-                        ?>
-                    </fieldset>
-                    <?= $this->Form->button(__('Enviar Mensaje')) ?>
+                    </div>
+                    <div class="input-group">
+                        <textarea name="contenido" id="message" placeholder="Mensaje" class="form-control"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <input type="submit" id="form-submit" class="pull-right" value="<?= __('Enviar Mensaje') ?>">
+                    </div>
                     <?= $this->Form->end() ?>
                 </div>
             </div>
