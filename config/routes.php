@@ -53,7 +53,15 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);
-
+    
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login', 'prefix' => 'admin']);
+    
+    $routes->connect('/addOrder', ['controller' => 'Pages', 'action' => 'addOrder']);
+    
+    $routes->connect('/sendMail', ['controller' => 'Pages', 'action' => 'sendMail']);
+    
+    $routes->connect('/sendComment', ['controller' => 'Pages', 'action' => 'sendComment']);
+    
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
@@ -82,6 +90,10 @@ Router::prefix('admin', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'index']);
+    
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    
+    $routes->connect('/settings', ['controller' => 'settings', 'action' => 'edit',1]);
 
     $routes->fallbacks(DashedRoute::class);
 });

@@ -4,17 +4,12 @@
  * @var \App\Model\Entity\Order[]|\Cake\Collection\CollectionInterface $orders
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Order'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="orders index large-9 medium-8 columns content">
-    <h3><?= __('Orders') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<h3><?php echo __('Orders'); ?></h3>
+<div class="row-fluid" style="padding-bottom: 8px;">
+    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New Order'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
+</div>
+<div class="content table-responsive">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -31,22 +26,34 @@
         </thead>
         <tbody>
             <?php foreach ($orders as $order): ?>
-            <tr>
-                <td><?= $this->Number->format($order->id) ?></td>
-                <td><?= h($order->full_name) ?></td>
-                <td><?= h($order->ci) ?></td>
-                <td><?= $this->Number->format($order->phono) ?></td>
-                <td><?= h($order->email) ?></td>
-                <td><?= h($order->status) ?></td>
-                <td><?= h($order->created) ?></td>
-                <td><?= h($order->modified) ?></td>
-                <td><?= $order->has('user') ? $this->Html->link($order->user->id, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $order->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $order->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
-                </td>
-            </tr>
+                <tr>
+                    <td><?= $this->Number->format($order->id) ?></td>
+                    <td><?= h($order->full_name) ?></td>
+                    <td><?= h($order->ci) ?></td>
+                    <td><?= $this->Number->format($order->phono) ?></td>
+                    <td><?= h($order->email) ?></td>
+                    <td><?= h($order->status) ?></td>
+                    <td><?= h($order->created) ?></td>
+                    <td><?= h($order->modified) ?></td>
+                    <td><?= $order->has('user') ? $this->Html->link($order->user->id, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
+                    <td class="actions">
+                        <?=
+                        $this->Html->link("<i class=\"fa fa-eye fa-lg\"></i>", ['action' => 'view', $order->id], ['escape' => false,
+                            'title' => __('View'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                        <?=
+                        $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $order->id], ['escape' => false,
+                            'title' => __('Edit'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                        <?=
+                        $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id), 'escape' => false,
+                            'title' => __('Delete'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>

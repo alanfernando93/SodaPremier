@@ -31,9 +31,11 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
         <?= $this->element('admin/navigation') ?>
         <div class="content-wrapper">
-            <?= $this->Flash->render() ?>
-            <div class="container-fluid">
-                <?= $this->fetch('content') ?>
+            <div class="container-fluid">    
+                <?= $this->Flash->render() ?>       
+                <div class="container">
+                    <?= $this->fetch('content') ?>
+                </div>
             </div>
             <!-- /.container-fluid-->
             <!-- /.content-wrapper-->
@@ -61,26 +63,26 @@ $cakeDescription = 'SB Admin - Start Bootstrap Template';
                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <?= $this->Html->link(__('Logout'), ['controller' => false, 'action' => false, 'prefix' => false, '_full' => true], ['class' => 'btn btn-primary']) ?>
+                            <?= $this->Html->link(__('Logout'), '/admin/logout', ['class' => 'btn btn-primary']) ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php
-            $script = array(
-                'admin/jquery.js',
-                'admin/bootstrap.bundle.js',
-                'admin/jquery.easing.js',
-                'admin/Chart.js',
-                'admin/jquery.dataTables.js',
-                'admin/dataTables.bootstrap4.js',
-                'admin/sb-admin.js',
-                'admin/sb-admin-datatables.js',
-                'admin/sb-admin-charts.js',
-            );
-            ?>
-            <?= $this->Html->script($script, ['plugin' => false]) ?>
-            <?= $this->fetch('script') ?>
         </div>
+        <?php
+        $script = array(
+            'admin/jquery.js',
+            'admin/bootstrap.bundle.js',
+            'admin/jquery.easing.js',
+            'admin/Chart.js',
+            'admin/jquery.dataTables.js',
+            'admin/dataTables.bootstrap4.js',
+            'admin/sb-admin.js',
+            'admin/sb-admin-datatables.js',
+            'admin/sb-admin-charts.js',
+        );
+        ?>
+        <?= $this->Html->script($script, ['plugin' => false]) ?>
+        <?= $this->fetch('script') ?>
     </body>
 </html>

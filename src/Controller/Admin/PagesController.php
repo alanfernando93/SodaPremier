@@ -36,4 +36,19 @@ class PagesController extends AdminController {
         // $this->set('page_active', 'class="active"');
     }
 
+    public function isAuthorized($user) {
+// All registered users can add articles
+        if ($this->request->getParam('action') === 'add') {
+            return true;
+        }
+// The owner of an article can edit and delete it
+//        if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+//            $articleId = (int) $this->request->getParam('pass.0');
+//            if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+//                return true;
+//            }
+//        }
+        return parent::isAuthorized($user);
+    }
+
 }

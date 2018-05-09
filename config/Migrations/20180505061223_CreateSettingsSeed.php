@@ -2,19 +2,14 @@
 
 use Migrations\AbstractMigration;
 
-class CreateAdminSeedMigration extends AbstractMigration {
+class CreateSettingsSeed extends AbstractMigration {
 
     public function up() {
         $faker = \Faker\Factory::create();
         $populator = new \Faker\ORM\CakePHP\Populator($faker);
-        $populator->addEntity('Users', 1, [
-            'first_name' => 'Admin',
-            'last_name' => 'Root',
-            'email' => 'root@test.com',
-            'username' => 'admin',
-            'password' => 'admin',
-            'role' => 'admin',
-            'active' => 1,
+        $populator->addEntity('settings', 1, [
+            'title' => 'SodaPremier',
+            'email' => 'alanfernando93.am@gmail.com',
             'created' => function () use ($faker) {
                 return $faker->dateTimeBetween($stratDate = "now", $endDate = "now");
             },

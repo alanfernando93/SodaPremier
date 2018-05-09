@@ -4,15 +4,13 @@
  * @var \App\Model\Entity\Permission[]|\Cake\Collection\CollectionInterface $permissions
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Permission'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="permissions index large-9 medium-8 columns content">
+<h3><?php echo __('Permissions'); ?></h3>
+<div class="row-fluid" style="padding-bottom: 8px;">
+    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New Permission'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
+</div>
+<div class="content table-responsive">
     <h3><?= __('Permissions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -24,28 +22,40 @@
         </thead>
         <tbody>
             <?php foreach ($permissions as $permission): ?>
-            <tr>
-                <td><?= $this->Number->format($permission->id) ?></td>
-                <td><?= h($permission->permisos) ?></td>
-                <td><?= h($permission->created) ?></td>
-                <td><?= h($permission->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $permission->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $permission->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $permission->id], ['confirm' => __('Are you sure you want to delete # {0}?', $permission->id)]) ?>
-                </td>
-            </tr>
+                <tr>
+                    <td><?= $this->Number->format($permission->id) ?></td>
+                    <td><?= h($permission->permisos) ?></td>
+                    <td><?= h($permission->created) ?></td>
+                    <td><?= h($permission->modified) ?></td>
+                    <td class="actions">
+                        <?=
+                        $this->Html->link("<i class=\"fa fa-eye fa-lg\"></i>", ['action' => 'view', $permission->id], ['escape' => false,
+                            'title' => __('View'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                        <?=
+                        $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $permission->id], ['escape' => false,
+                            'title' => __('Edit'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                        <?=
+                        $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $permission->id], ['confirm' => __('Are you sure you want to delete # {0}?', $permission->id), 'escape' => false,
+                            'title' => __('Delete'),
+                            'data-toggle' => 'tooltip'])
+                        ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+</div>
+<div class="paginator">
+    <ul class="pagination">
+        <?= $this->Paginator->first('<< ' . __('first')) ?>
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+        <?= $this->Paginator->last(__('last') . ' >>') ?>
+    </ul>
+    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
 </div>

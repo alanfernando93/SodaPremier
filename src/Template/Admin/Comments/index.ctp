@@ -1,54 +1,48 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Datasource\EntityInterface[]|\Cake\Collection\CollectionInterface $users
+ * @var \App\Model\Entity\Comment[]|\Cake\Collection\CollectionInterface $comments
  */
 ?>
-<h3><?php echo __('Users'); ?></h3>
+<h3><?php echo __('Comments'); ?></h3>
 <div class="row-fluid" style="padding-bottom: 8px;">
-    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New User'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
+    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New Comment'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
 </div>
 <div class="content table-responsive">
     <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contenido') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nombre') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($comments as $comment): ?>
                 <tr>
-                    <td><?= $this->Number->format($user->id) ?></td>
-                    <td><?= h($user->first_name) ?></td>
-                    <td><?= h($user->last_name) ?></td>
-                    <td><?= h($user->email) ?></td>
-                    <td><?= h($user->username) ?></td>
-                    <td><?= h($user->role) ?></td>
-                    <td><?= h($user->active) ?></td>
-                    <td><?= h($user->created) ?></td>
-                    <td><?= h($user->modified) ?></td>
+                    <td><?= $this->Number->format($comment->id) ?></td>
+                    <td><?= h($comment->contenido) ?></td>
+                    <td><?= h($comment->email) ?></td>
+                    <td><?= h($comment->nombre) ?></td>
+                    <td><?= h($comment->created) ?></td>
+                    <td><?= h($comment->modified) ?></td>
                     <td class="actions">
                         <?=
-                        $this->Html->link("<i class=\"fa fa-eye fa-lg\"></i>", ['action' => 'view', $user->id], ['escape' => false,
+                        $this->Html->link("<i class=\"fa fa-eye fa-lg\"></i>", ['action' => 'view', $comment->id], ['escape' => false,
                             'title' => __('View'),
                             'data-toggle' => 'tooltip'])
                         ?>
                         <?=
-                        $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $user->id], ['escape' => false,
+                        $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $comment->id], ['escape' => false,
                             'title' => __('Edit'),
                             'data-toggle' => 'tooltip'])
                         ?>
                         <?=
-                        $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->first_name), 'escape' => false,
+                        $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'escape' => false,
                             'title' => __('Delete'),
                             'data-toggle' => 'tooltip'])
                         ?>

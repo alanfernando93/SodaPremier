@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use Cake\Event\Event;
+use Cake\Log\Log;
 /**
  * Orders Controller
  *
@@ -9,16 +11,14 @@ use Cake\Event\Event;
  *
  * @method \App\Model\Entity\Order[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class OrdersController extends AdminController
-{
+class OrdersController extends AdminController {
 
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
+    public function index() {
         $this->paginate = [
             'contain' => ['Users']
         ];
@@ -34,8 +34,7 @@ class OrdersController extends AdminController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $order = $this->Orders->get($id, [
             'contain' => ['Users']
         ]);
@@ -48,8 +47,7 @@ class OrdersController extends AdminController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $order = $this->Orders->newEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
@@ -61,7 +59,8 @@ class OrdersController extends AdminController
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
         $users = $this->Orders->Users->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'users'));
+        $products = $this->Orders->Products->find('list', ['limit' => 200]);
+        $this->set(compact('order', 'users', 'products'));
     }
 
     /**
@@ -71,8 +70,7 @@ class OrdersController extends AdminController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $order = $this->Orders->get($id, [
             'contain' => []
         ]);
@@ -96,8 +94,7 @@ class OrdersController extends AdminController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $order = $this->Orders->get($id);
         if ($this->Orders->delete($order)) {
@@ -108,8 +105,30 @@ class OrdersController extends AdminController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
+        $this->Orders->getEventManager()->on('Model.Order.afterPlace', function ($event) {
+            Log::write(
+                    'info', 'A new order was placed with id: ' . $event->getSubject()->id
+            );
+        });
+        // $this->set('page_active', 'class="active"');
     }
+
+    public function isAuthorized($user) {
+// All registered users can add articles
+        if ($this->request->getParam('action') === 'add') {
+            return true;
+        }
+// The owner of an article can edit and delete it
+//        if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+//            $articleId = (int) $this->request->getParam('pass.0');
+//            if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+//                return true;
+//            }
+//        }
+        return parent::isAuthorized($user);
+    }
+
 }

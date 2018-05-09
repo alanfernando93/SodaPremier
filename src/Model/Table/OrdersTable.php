@@ -2,14 +2,18 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
+use Cake\Event\Event;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Psy\debug;
+
 use Cake\Validation\Validator;
 
 /**
  * Orders Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property |\Cake\ORM\Association\BelongsTo $Products
  *
  * @method \App\Model\Entity\Order get($primaryKey, $options = [])
  * @method \App\Model\Entity\Order newEntity($data = null, array $options = [])
@@ -44,6 +48,10 @@ class OrdersTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Products', [
+            'foreignKey' => 'product_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -65,8 +73,7 @@ class OrdersTable extends Table
             ->notEmpty('full_name');
 
         $validator
-            ->scalar('ci')
-            ->maxLength('ci', 50)
+            ->integer('ci')
             ->requirePresence('ci', 'create')
             ->notEmpty('ci');
 
@@ -79,6 +86,16 @@ class OrdersTable extends Table
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
+
+        $validator
+            ->scalar('type')
+            ->requirePresence('type', 'create')
+            ->notEmpty('type');
+
+        $validator
+            ->integer('count')
+            ->requirePresence('count', 'create')
+            ->notEmpty('count');
 
         $validator
             ->scalar('status')
@@ -97,9 +114,24 @@ class OrdersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+//        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['product_id'], 'Products'));
 
         return $rules;
+    }
+    
+    public function place($order)
+    {
+        if ($this->save($order)) {
+//            $this->Cart->remove($order);
+            debug("entre creando");
+            $event = new Event('Model.Order.afterPlace', $this, [
+                'order' => $order
+            ]);
+            $this->eventManager()->dispatch($event);
+            return true;
+        }
+        return false;
     }
 }
