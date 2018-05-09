@@ -66,18 +66,43 @@ class PagesController extends AppController {
         }
         $this->setAction('home');
     }
-    
+
     public function sendComment() {
+        $this->loadModel('Settings');
         $this->loadModel('Comments');
+        Email::setConfigTransport('gmail', [
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'username' => 'alanfernando93.am@gmail.com',
+            'password' => 'alanmamanihuayllani',
+            'className' => 'Smtp',
+            'tls' => true
+        ]);
         $comment = $this->Comments->newEntity();
+        $setting = $this->Settings->get(1);
         if ($this->request->is('post')) {
+            $correo = new Email(); //instancia de correo
+            $correo->setTransport('gmail'); //nombre del configTrasnport que acabamos de configurar
+            $correo->setTemplate('welcome'); //plantilla a utilizar
+            $correo->setEmailFormat('html'); //formato de correo
+            $correo->setTo($setting->email); //correo para
+            $correo->setFrom($setting->email); //correo de
+            $correo->setSubject('Sugerencias'); //asunto
+            $correo->setViewVars([//enviar variables a la plantilla
+                'name' => $this->request->getData('nombre'),
+                'email' => $this->request->getData('email'),
+                'message' => $this->request->getData('contenido'),
+//                        'var3' => 'http://blog.kiuvox.com'
+            ]);
+
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'),['key' => 'comment']);
-
-                return $this->redirect('/#contact');
+                $this->Flash->success(__('The comment has been saved.'), ['key' => 'comment']);
+                if ($correo->send()) {
+                    return $this->redirect('/#contact');
+                }
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'),['key' => 'comment']);
+            $this->Flash->error(__('The comment could not be saved. Please, try again.'), ['key' => 'comment']);
             return $this->redirect('/#contact');
         }
         $this->setAction('home');
@@ -97,13 +122,13 @@ class PagesController extends AppController {
         if ($this->request->is('post')) {
             $correo = new Email(); //instancia de correo
             $correo->setTransport('gmail'); //nombre del configTrasnport que acabamos de configurar
-            $correo->setTemplate('default'); //plantilla a utilizar
+            $correo->setTemplate('welcome'); //plantilla a utilizar
             $correo->setEmailFormat('html'); //formato de correo
             $correo->setTo('alanfernando93@hotmail.com'); //correo para
             $correo->setFrom('alanfernando.am93@gmaill.com'); //correo de
             $correo->setSubject('Correo de prueba en cakephp3'); //asunto
             $correo->setViewVars([//enviar variables a la plantilla
-                        'content' => 'hola\npollo    99999'
+                'content' => 'hola\npollo    99999'
 //                        'var1' => 'Hugo',
 //                        'var2' => 'Kiuvox',
 //                        'var3' => 'http://blog.kiuvox.com'
@@ -120,7 +145,7 @@ class PagesController extends AppController {
         }
         $this->setAction('home');
     }
-    
+
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
         $this->loadModel('Orders');
