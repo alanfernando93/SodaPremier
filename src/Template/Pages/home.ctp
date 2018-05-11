@@ -7,7 +7,7 @@
         </ol>
 
         <div class="carousel-inner" role="listbox">            
-            <div class="item active" style="background-image: url(img/banner.jpg);">
+            <div class="item active" style="background-image: url(img/banner.jpeg);">
                 <div class="carousel-caption">
                     <h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">SODA<span> PREMIER</span>!</h2>
                     <h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color">/Gaseosas </span> de ALTA calidad</h3>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="item" style="background-image: url(img/banner.jpg);">
+            <div class="item" style="background-image: url(img/banner.jpeg);">
                 <div class="carousel-caption">
                     <h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">JUGOS<span> PREMIER</span>!</h2>
                     <h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">/JUGOS</span> de ALTA calidad</h3>
@@ -249,29 +249,29 @@
                         <input type="hidden" name="status" id="status" value="pendiente">
                         <div class="input-group name-email">
                             <div class="input-field">
-                                <input type="text" name="full_name" id="full_name" placeholder="Nombre" class="form-control">
+                                <input type="text" name="full_name" id="full_name" placeholder="Nombre" class="form-control" required>
                             </div>
                             <div class="input-field">
-                                <input type="email" name="email" id="email" placeholder="Correo" class="form-control">
+                                <input type="email" name="email" id="email" placeholder="Correo" class="form-control" required>
                             </div>
                             <div class="input-field">
-                                <input type="text" name="ci" id="ci" placeholder="Carnet de Indentidad" class="form-control">
+                                <input type="text" name="ci" id="ci" placeholder="Carnet de Indentidad" class="form-control" required>
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="input-field">
-                                <input type="text" name="phono" id="phono" placeholder="Telefono" class="form-control">
+                                <input type="text" name="phono" id="phono" placeholder="Telefono" class="form-control" required>
                             </div>
                             <div class="input-field">
-                                <input type="number" name="count" id="count" placeholder="Cantidad" class="form-control">
+                                <input type="number" name="count" id="count" placeholder="Cantidad" class="form-control" required>
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="input-field select">
-                                <?php echo $this->Form->select('product_id', $products, ['class' => 'select', 'empty' => '(Seleccione un producto)']); ?>
+                                <?php echo $this->Form->select('product_id', $products, ['class' => 'select', 'empty' => '(Seleccione un producto)', 'required']); ?>
                             </div>
                             <div class="input-field select">
-                                <?php echo $this->Form->select('type', ['gaseosa' => 'Gaseosa', 'jugo' => 'Jugo'], ['class' => 'select', 'empty' => '(Seleccione el tipo de producto)']); ?>
+                                <?php echo $this->Form->select('type', ['gaseosa' => 'Gaseosa', 'jugo' => 'Jugo'], ['class' => 'select', 'empty' => '(Seleccione el tipo de producto)', 'required']); ?>
                             </div>
 
                         </div>
@@ -313,14 +313,14 @@
                     <?= $this->Form->create(null, ['url' => '/sendComment', 'id' => 'contact-form']) ?>
                     <div class="input-group name-email">
                         <div class="input-field">
-                            <input type="text" name="nombre" id="name" placeholder="Nombre" class="form-control">
+                            <input type="text" name="nombre" id="name" placeholder="Nombre" class="form-control" required>
                         </div>
                         <div class="input-field">
-                            <input type="email" name="email" id="email" placeholder="Correo" class="form-control">
+                            <input type="email" name="email" id="email" placeholder="Correo" class="form-control" required>
                         </div>
                     </div>
                     <div class="input-group">
-                        <textarea name="contenido" id="message" placeholder="Mensaje" class="form-control"></textarea>
+                        <textarea name="contenido" id="message" placeholder="Mensaje" class="form-control" required></textarea>
                     </div>
                     <div class="input-group">
                         <input type="submit" id="form-submit" class="pull-right" value="<?= __('Enviar Mensaje') ?>">

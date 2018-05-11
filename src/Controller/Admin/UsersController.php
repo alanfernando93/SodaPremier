@@ -35,7 +35,7 @@ class UsersController extends AdminController {
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
+        $this->viewBuilder()->setLayout('login');
         $this->set('user', $user);
     }
 
@@ -128,7 +128,7 @@ class UsersController extends AdminController {
 
     public function beforeFilter(Event $event) {
         parent ::beforeFilter($event);
-        $this->Auth->allow(['logout','add']);
+        $this->Auth->allow(['logout', 'add']);
     }
 
     public function isAuthorized($user) {

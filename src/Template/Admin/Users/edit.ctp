@@ -4,32 +4,59 @@
  * @var \Cake\Datasource\EntityInterface $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('first_name');
-            echo $this->Form->control('last_name');
-            echo $this->Form->control('email');
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
-            echo $this->Form->control('role');
-            echo $this->Form->control('active');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<h2><?= __('Actualizar Datos de Usuario') ?></h2>
+<?= $this->Form->create($user, ['class' => 'needs-validation']) ?>
+<div class="form-row">
+    <?= $this->Form->control('role', ['type' => 'hidden']); ?>
+    <div class="col-md-4 mb-3">
+        <label for="firstName"><?= __('Nombre') ?></label>
+        <?= $this->Form->text('first_name', ['id' => 'firstName', 'class' => 'form-control', 'placeholder' => 'Ingrese Nombre']); ?>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="lastName"><?= __('Apellido') ?></label>
+        <?= $this->Form->text('last_name', ['id' => 'lastName', 'class' => 'form-control', 'placeholder' => __('Ingrese Apellidos')]); ?>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="username"><?= __('Username') ?></label>
+        <?= $this->Form->text('username', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Ingrese Username']); ?>
+        <div class="invalid-feedback">
+            Please choose a username.
+        </div>
+    </div>
 </div>
+<div class="form-row">
+    <div class="col-md-5 mb-3">
+        <label for="email"><?= __('Correo Electronico') ?></label>        
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+            </div>
+            <?= $this->Form->text('email', ['id' => 'email', 'type' => 'email', 'class' => 'form-control', 'placeholder' => 'Ingrese Correo Electronico']); ?>
+            <div class="invalid-feedback">
+                Please provide a valid city.
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <label for="password"><?= __('Contraseña') ?></label>
+        <?= $this->Form->text('password', ['id' => 'password', 'class' => 'form-control', 'disabled' => true, 'type' => 'password']); ?>
+        <div class="invalid-feedback">
+            Please provide a valid state.
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <label for="active"><?= __('Estado') ?></label>
+        <?= $this->Form->text('active', ['id' => 'active', 'class' => 'form-control select', 'disabled' => true, 'type' => 'select', 'options' => ['true' => 'activado', 'false' => 'bloqueado']]); ?>
+        <div class="invalid-feedback">
+            Please provide a valid options.
+        </div>
+    </div>
+</div>
+<?= $this->Form->button(__('Guadar'), ['class' => 'btn btn-primary']) ?>
+<?= $this->Form->end() ?>

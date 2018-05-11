@@ -4,29 +4,21 @@
  * @var \App\Model\Entity\Product $product
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="products form large-9 medium-8 columns content">
+<div class="col-md-6">
     <?= $this->Form->create($product) ?>
     <fieldset>
-        <legend><?= __('Add Product') ?></legend>
+        <h1><?= __('Añador Producto') ?></h1>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('description');
-            echo $this->Form->control('type');
-            echo $this->Form->control('stock');
-            echo $this->Form->control('price');
-            echo $this->Form->control('photo');
-            echo $this->Form->control('photo_dir');
-            echo $this->Form->control('user_id', ['options' => $users]);
+        echo $this->Form->control('name', ['class' => 'form-control', 'label' => __('Nombre')]);
+        echo $this->Form->control('description', ['class' => 'form-control', 'label' => __('Descripcion')]);
+        echo $this->Form->control('type', ['class' => 'form-control', 'label' => __('Categoria'), 'options' => ['jugo' => 'Jugos', 'gaseosa' => 'Gaseosa']]);
+        echo $this->Form->control('stock', ['class' => 'form-control', 'label' => __('Stock')]);
+        echo $this->Form->control('price', ['class' => 'form-control', 'label' => __('Precio')]);
+        echo $this->Form->control('photo', ['value' => '/', 'type' => 'hidden']);
+        echo $this->Form->control('photo_dir', ['value' => "/", 'type' => 'hidden']);
+        echo $this->Form->control('user_id', ['value' => $current, 'type' => 'hidden']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    </fieldset><br>
+    <?= $this->Form->button(__('Crear'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

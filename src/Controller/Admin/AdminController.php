@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use \App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Admin Controller
@@ -50,7 +51,12 @@ class AdminController extends AppController {
     }
     
     public function beforeFilter(Event $event) {
+        $settings = TableRegistry::get('Settings');
+        $current = $this->Auth->user('id');
+        $setting = $settings->find()->where(['id' => 1])->first();
+//        debug($this->Auth->user('id'));
         $this->viewBuilder()->setLayout('admin');
+        $this->set(compact('setting','current'));
 //        $this->Auth->allow(['index', 'view']);
     }
 

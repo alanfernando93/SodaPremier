@@ -10,6 +10,7 @@ class CreateSettingsSeed extends AbstractMigration {
         $populator->addEntity('settings', 1, [
             'title' => 'SodaPremier',
             'email' => 'alanfernando93.am@gmail.com',
+            'password' => 'alanmamanihuayllani',
             'created' => function () use ($faker) {
                 return $faker->dateTimeBetween($stratDate = "now", $endDate = "now");
             },

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use Cake\Event\Event;
+use Cake\Psy\debug;
 
 /**
  * Products Controller
@@ -107,6 +108,7 @@ class ProductsController extends AdminController {
 
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
+        
         // $this->set('page_active', 'class="active"');
     }
 

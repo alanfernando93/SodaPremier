@@ -4,27 +4,16 @@
  * @var \App\Model\Entity\Setting $setting
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $setting->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $setting->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Settings'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="settings form large-9 medium-8 columns content">
+<div class="col-md-5">
     <?= $this->Form->create($setting) ?>
     <fieldset>
-        <legend><?= __('Edit Setting') ?></legend>
+        <h1><?= __('Edit Setting') ?></h1>
         <?php
-            echo $this->Form->control('title');
-            echo $this->Form->control('email');
+            echo $this->Form->control('title',['class'=>'form-control','label'=>__('Titulo')]);
+            echo $this->Form->control('email',['class'=>'form-control','label'=>__('Correo Empresarial')]);
+            echo $this->Form->control('password',['class'=>'form-control','label'=>__('Contraseña de Correo Empresarial')]);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    </fieldset><br>
+    <?= $this->Form->button(__('Guardar'),['class'=>'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

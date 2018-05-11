@@ -70,16 +70,16 @@ class PagesController extends AppController {
     public function sendComment() {
         $this->loadModel('Settings');
         $this->loadModel('Comments');
+        $comment = $this->Comments->newEntity();
+        $setting = $this->Settings->get(1);
         Email::setConfigTransport('gmail', [
             'host' => 'smtp.gmail.com',
             'port' => 587,
-            'username' => 'alanfernando93.am@gmail.com',
-            'password' => 'alanmamanihuayllani',
+            'username' => $setting->email,
+            'password' => $setting->password,
             'className' => 'Smtp',
             'tls' => true
         ]);
-        $comment = $this->Comments->newEntity();
-        $setting = $this->Settings->get(1);
         if ($this->request->is('post')) {
             $correo = new Email(); //instancia de correo
             $correo->setTransport('gmail'); //nombre del configTrasnport que acabamos de configurar
@@ -96,11 +96,9 @@ class PagesController extends AppController {
             ]);
 
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
-            if ($this->Comments->save($comment)) {
+            if ($this->Comments->save($comment) && $correo->send()) {
                 $this->Flash->success(__('The comment has been saved.'), ['key' => 'comment']);
-                if ($correo->send()) {
-                    return $this->redirect('/#contact');
-                }
+                return $this->redirect('/#contact');
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'), ['key' => 'comment']);
             return $this->redirect('/#contact');

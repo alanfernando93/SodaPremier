@@ -4,24 +4,24 @@
  * @var \Cake\Datasource\EntityInterface[]|\Cake\Collection\CollectionInterface $users
  */
 ?>
-<h3><?php echo __('Users'); ?></h3>
+<h3><?php echo __('Usuarios'); ?></h3>
 <div class="row-fluid" style="padding-bottom: 8px;">
-    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New User'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
+    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('Nuevo Usuario'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
 </div>
 <div class="content table-responsive">
     <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('first_name',__('Nombre')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('last_name',__('Apellidos')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('email',__('Correo')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('username',__('Username')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('role',__('Rol')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active',__('Estado')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created',__('Creado')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified',__('Modificado')) ?></th>
+                <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -39,17 +39,17 @@
                     <td class="actions">
                         <?=
                         $this->Html->link("<i class=\"fa fa-eye fa-lg\"></i>", ['action' => 'view', $user->id], ['escape' => false,
-                            'title' => __('View'),
+                            'title' => __('Vista'),
                             'data-toggle' => 'tooltip'])
                         ?>
                         <?=
                         $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $user->id], ['escape' => false,
-                            'title' => __('Edit'),
+                            'title' => __('Editar'),
                             'data-toggle' => 'tooltip'])
                         ?>
                         <?=
                         $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->first_name), 'escape' => false,
-                            'title' => __('Delete'),
+                            'title' => __('Eliminar'),
                             'data-toggle' => 'tooltip'])
                         ?>
                     </td>

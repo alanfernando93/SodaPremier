@@ -1,7 +1,7 @@
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+<!--    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <?= $this->Html->link("<i class=\"fa fa-fw fa-dashboard\"></i><span class=\"nav-link-text\">" . __('Dashboard') . "</span>", ['controller' => 'pages', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
-    </li>
+    </li>-->
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
         <?= $this->Html->link("<i class=\"fa fa-fw fa-shopping-cart \"></i><span class=\"nav-link-text\">" . __('Orders') . "</span>", ['controller' => 'orders', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']) ?>
     </li>
@@ -23,12 +23,12 @@
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <?= $this->Html->link(__('General'), ['controller' => 'settings', 'action' => 'edit',1]) ?>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+<!--            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <?= $this->Html->link(__('Roles'), ['controller' => 'roles', 'action' => 'index']) ?>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                 <?= $this->Html->link(__('Permissions'), ['controller' => 'permissions', 'action' => 'index']) ?>
-            </li>
+            </li>-->
         </ul>
     </li>
 </ul>

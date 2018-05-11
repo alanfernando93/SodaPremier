@@ -4,9 +4,9 @@
  * @var \App\Model\Entity\Comment[]|\Cake\Collection\CollectionInterface $comments
  */
 ?>
-<h3><?php echo __('Comments'); ?></h3>
+<h3><?php echo __('Comentarios'); ?></h3>
 <div class="row-fluid" style="padding-bottom: 8px;">
-    <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('New Comment'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?>
+   <!-- <?= $this->Html->link("<i class=\"fa fa-plus fa-lg\"></i> " . __('Nuevo Commentaio'), ['action' => 'add'], ['escape' => false, 'admin' => true, 'prefix' => 'admin', 'class' => 'btn btn-default']) ?> -->
 </div>
 <div class="content table-responsive">
     <table class="table table-hover table-striped">
@@ -14,11 +14,11 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('contenido') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nombre') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('email',__('Correo')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nombre',__('Nombre')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created',__('Creado')) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified',__('Modificado')) ?></th>
+                <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                             'title' => __('View'),
                             'data-toggle' => 'tooltip'])
                         ?>
-                        <?=
+                        <!--<?=
                         $this->Html->link("<i class=\"fa fa-pencil-square-o fa-lg\"></i>", ['action' => 'edit', $comment->id], ['escape' => false,
                             'title' => __('Edit'),
                             'data-toggle' => 'tooltip'])
@@ -45,7 +45,7 @@
                         $this->Form->postLink("<i class=\"fa fa-trash fa-lg\"></i>", ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'escape' => false,
                             'title' => __('Delete'),
                             'data-toggle' => 'tooltip'])
-                        ?>
+                        ?>-->
                     </td>
                 </tr>
             <?php endforeach; ?>
