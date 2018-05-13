@@ -185,6 +185,7 @@ body > section,
 
 #slider .carousel-inner .item {
     background-size: cover;
+    background-position-y: bottom;
 }
 
 .carousel-caption {
@@ -360,7 +361,7 @@ body > section,
 }
 
 .work-item {
-    float: left;
+    float: none;
     width: 30%;
     position: relative;
 }

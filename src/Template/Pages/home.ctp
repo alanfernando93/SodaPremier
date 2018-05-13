@@ -7,33 +7,33 @@
         </ol>
 
         <div class="carousel-inner" role="listbox">            
-            <div class="item active" style="background-image: url(img/banner.jpeg);">
+            <div class="item active" style="background-image: url(img/banner-gaseosa.jpeg);">
                 <div class="carousel-caption">
                     <h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">SODA<span> PREMIER</span>!</h2>
                     <h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color">/Gaseosas </span> de ALTA calidad</h3>
                     <p data-wow-duration="1000ms" class="wow slideInRight animated">Producto con todas las licencias y certficaciones del rubro</p>
 
-                    <ul class="social-links text-center">
+<!--                    <ul class="social-links text-center">
                         <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
-                    </ul>
+                    </ul>-->
                 </div>
             </div>
 
-            <div class="item" style="background-image: url(img/banner.jpeg);">
+            <div class="item" style="background-image: url(img/banner-jugo.jpeg);">
                 <div class="carousel-caption">
                     <h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">JUGOS<span> PREMIER</span>!</h2>
                     <h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">/JUGOS</span> de ALTA calidad</h3>
                     <p data-wow-duration="500ms" class="wow slideInRight animated">Producto con todas las licencias y certficaciones del rubro</p>
 
-                    <ul class="social-links text-center">
+<!--                    <ul class="social-links text-center">
                         <li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-google-plus fa-lg"></i></a></li>
                         <li><a href=""><i class="fa fa-dribbble fa-lg"></i></a></li>
-                    </ul>
+                    </ul>-->
                 </div>
             </div>            
         </div>        
@@ -96,23 +96,14 @@
                     <li><a href="javascript:;" data-filter="all" class="active filter">Todas</a></li>
                     <li><a href="javascript:;" data-filter=".branding" class="filter">Gaseosas</a></li>
                     <li><a href="javascript:;" data-filter=".web" class="filter">Jugos</a></li>
-                    <li><a href="javascript:;" data-filter=".logo-design" class="filter">Pomelo</a></li>
-                    <li><a href="javascript:;" data-filter=".photography" class="filter">gINGER</a></li>
+<!--                    <li><a href="javascript:;" data-filter=".logo-design" class="filter">Pomelo</a></li>
+                    <li><a href="javascript:;" data-filter=".photography" class="filter">gINGER</a></li>-->
                 </ul>
             </div>            
         </div>
     </div>
 
     <div class="project-wrapper">    
-        <figure class="mix work-item branding">
-            <img src="img/works/item-1.jpg" alt="">
-            <figcaption class="overlay">
-                <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-1.jpg"><i class="fa fa-eye fa-lg"></i></a>
-                <h4>Expandir Imagen</h4>
-                <p>Fotografia</p>
-            </figcaption>
-        </figure>
-
         <figure class="mix work-item branding">
             <img src="img/works/item-1.jpg" alt="">
             <figcaption class="overlay">
@@ -131,7 +122,7 @@
             </figcaption>
         </figure>
 
-        <figure class="mix work-item logo-design">
+        <figure class="mix work-item web">
             <img src="img/works/item-3.jpg" alt="">
             <figcaption class="overlay">
                 <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-3.jpg"><i class="fa fa-eye fa-lg"></i></a>
@@ -140,7 +131,7 @@
             </figcaption>
         </figure>
 
-        <figure class="mix work-item photography">
+        <figure class="mix work-item branding">
             <img src="img/works/item-4.jpg" alt="">
             <figcaption class="overlay">
                 <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-4.jpg"><i class="fa fa-eye fa-lg"></i></a>
@@ -158,7 +149,7 @@
             </figcaption>
         </figure>
 
-        <figure class="mix work-item web">
+        <figure class="mix work-item branding">
             <img src="img/works/item-6.jpg" alt="">
             <figcaption class="overlay">
                 <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-6.jpg"><i class="fa fa-eye fa-lg"></i></a>
@@ -167,7 +158,7 @@
             </figcaption>
         </figure>
 
-        <figure class="mix work-item logo-design">
+        <figure class="mix work-item branding">
             <img src="img/works/item-7.jpg" alt="">
             <figcaption class="overlay">
                 <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-7.jpg"><i class="fa fa-eye fa-lg"></i></a>
@@ -176,7 +167,7 @@
             </figcaption>
         </figure>
 
-        <figure class="mix work-item photography">
+        <figure class="mix work-item branding">
             <img src="img/works/item-8.jpg" alt="">
             <figcaption class="overlay">
                 <a class="fancybox" rel="works" title="Imagen expandida" href="img/works/item-8.jpg"><i class="fa fa-eye fa-lg"></i></a>
