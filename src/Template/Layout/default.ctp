@@ -56,7 +56,8 @@ $cakeDescription = 'Soda Premier - Bolivia';
             'jquery.mixitup.min.js',
             'jquery.parallax-1.1.3.js',
             'jquery-countTo.js',
-            'jquery.appear.js')
+            'jquery.appear.js'
+            )
         ?>
         <?= $this->Html->script($script) ?>
         <!-- Contact form validation -->

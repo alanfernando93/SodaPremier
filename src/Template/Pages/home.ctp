@@ -214,7 +214,6 @@
                     <div class="counters-item">
                         <i class="fa fa-trophy fa-4x"></i>
                         <strong data-to="200">0</strong>
-
                         <p>Reconocimientos</p>
                     </div>
                 </div>        
@@ -293,7 +292,7 @@
                     <h2>Nuestras Oficinas  </h2><br>
                     <center><p>Zona Tahuantinsuyo </p></center>
                     <center><p>El Alto - Bolivia</p></center>
-
+                    <center><p>73205846 - 72551789</p></center>
                 </div>
             </div>
 
